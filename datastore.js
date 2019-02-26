@@ -31,6 +31,19 @@ const QUESTIONS = [
     answer4: 'Blinky, Winky, Clyde, and Steve',
     correctAnswer: 'answer1',
   },
+
+{question: 'Should you ever attack a chicken in a Zelda game?',
+  answer1: 'Yes',
+  answer2: 'You can’t',
+  answer3: 'Only if you have a death wish!',
+  answer4: 'There are no chickens is these games',
+  correctAnswer: 'answer3',},
+  {question: 'Which Zelda game allows you to make your own food (and eat it, too!)?',
+  answer1: 'Ocarina of Time',
+  answer2: 'Majora’s Mask',
+  answer3: 'Skyward Sword',
+  answer4: 'Breath of the Wild',
+  correctAnswer: 'answer4',},
 ];
 
 // function generateAnswerList(){
