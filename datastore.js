@@ -2,7 +2,7 @@
 
 const STORE = {
   questionCounter: null,
-  usersAnswers: [],
+  userAnswers: [],
   currentView: 'start', 
   score: 0,
 };
@@ -100,27 +100,30 @@ function questionCounter(){
 
 
 function generateFeedback(){
-  return `<p>${correct ? "You got it right!" : "You got it wrong!"}</p><button class="next-question-button>Next Question</button>`;
+  const correct = verifyAnswer();
+  return `<p>${correct ? 'You got it right!' : 'You got it wrong!'}</p><button class="next-question-button>Next Question</button>`;
 }
 function handleAnswerSubmited(){
 // this function will listen submit
   $('.quiz').on('submit','.question-form',function(event){
     event.preventDefault();
-    console.log('Submit...');
-    const userAnswer = $('.question-form').val();
-    const correct = verifyAnswer(userAnswer);
+    console.log(event);
+    console.log($('.question-form').val());
+    STORE.userAnswers.push($('.question-form').val());
     renderHtml();
   });
 
 }
 
-function verifyAnswer(answer){
+function verifyAnswer(){
 // this function will check the submitted answer to see if it is correct
-const questionNumber = STORE.questionCounter;
-if (answer === QUESTIONS[questionNumber].correctAnswer){
-  scoreKeeper();
-  return true;
-}
+  const questionNumber = STORE.questionCounter;
+  const answer = STORE.userAnswers[-1];
+  if (answer === QUESTIONS[questionNumber].correctAnswer){
+    scoreKeeper();
+    return true;
+  }
+  return false;
 }
 
 function handleNextQuestion(){
