@@ -81,13 +81,20 @@ function renderHtml(){
   if (STORE.currentView === 'start'){
     $('.intro').html(generateIntro());
     $('.quiz').empty();
+    $('.feedback').empty();
   } else if (STORE.currentView === 'quiz'){
     $('.intro').empty();
     $('.quiz').html(generateQuiz(STORE.questionCounter));
+    $('.feedback').empty();
   } else if (STORE.currentView === 'feedback'){
     $('.intro').empty();
     $('.quiz').empty();
     $('.feedback').html(generateFeedback());
+  } else if (STORE.currentView === 'end'){
+    $('.intro').empty();
+    $('.quiz').empty();
+    $('.feedback').empty();
+    $('.end').html(generateEnd());
   }
 }
 function scoreKeeper(){
@@ -98,10 +105,13 @@ function questionCounter(){
   STORE.questionCounter++;
 }
 
+generateEnd(){
+  //this function will show the end of the quiz and allow user to restart
+}
 
 function generateFeedback(){
   const correct = verifyAnswer();
-  return `<p>${correct ? 'You got it right!' : 'You got it wrong!'}</p><button class="next-question-button">Next Question</button>`;
+  return `<p>${correct ? 'You got it right!' : 'You got it wrong!'}</p><button id="next-question-button">Next Question</button>`;
 }
 function handleAnswerSubmited(){
 // this function will listen submit
@@ -129,6 +139,12 @@ function verifyAnswer(){
 
 function handleNextQuestion(){
 // this function will exit the feedback screen and go to next question
+$('.feedback').on('click', '#next-question-button', function(event){
+  console.log('handling ....');
+  STORE.currentView = "quiz";
+  questionCounter();
+  renderHtml();
+})
 }
 
 function startQuiz(){
