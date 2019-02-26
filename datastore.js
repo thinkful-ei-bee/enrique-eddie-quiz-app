@@ -14,7 +14,7 @@ const QUESTIONS = [
     answer2: 'funky penguin singing',
     answer3: 'first person shooter',
     answer4: 'first player shooter',
-    correctAnswer: 'answer3',
+    correctAnswer: 'first person shooter',
   },
   {
     question: 'What is the name of Link\'s horse in The Legend of Zelda Ocarina of Time?',
@@ -22,28 +22,28 @@ const QUESTIONS = [
     answer2: 'Epona',
     answer3: 'Navi',
     answer4: 'Fred',
-    correctAnswer: 'answer2',
+    correctAnswer: 'Epona',
   },{
     question: 'What are the ghosts\' name in Pac-Man?',
     answer1: 'Blinky, Pinky, Inky, and Clyde',
     answer2: 'Blinky, Pinky, Winky, and Steve',
     answer3: 'Blinky, Winky, Timmy, and Bob',
     answer4: 'Blinky, Winky, Clyde, and Steve',
-    correctAnswer: 'answer1',
+    correctAnswer: 'Blinky, Pinky, Inky, and Clyde',
   },
   {question: 'Should you ever attack a chicken in a Zelda game?',
     answer1: 'Yes',
     answer2: 'You can’t',
     answer3: 'Only if you have a death wish!',
     answer4: 'There are no chickens is these games',
-    correctAnswer: 'answer3',},
+    correctAnswer: 'Only if you have a death wish!',},
   {
     question: 'Which Zelda game allows you to make your own food (and eat it, too!)?',
     answer1: 'Ocarina of Time',
     answer2: 'Majora’s Mask',
     answer3: 'Skyward Sword',
     answer4: 'Breath of the Wild',
-    correctAnswer: 'answer4',
+    correctAnswer: 'Breath of the Wild',
   },
 ];
 
@@ -101,15 +101,14 @@ function questionCounter(){
 
 function generateFeedback(){
   const correct = verifyAnswer();
-  return `<p>${correct ? 'You got it right!' : 'You got it wrong!'}</p><button class="next-question-button>Next Question</button>`;
+  return `<p>${correct ? 'You got it right!' : 'You got it wrong!'}</p><button class="next-question-button">Next Question</button>`;
 }
 function handleAnswerSubmited(){
 // this function will listen submit
   $('.quiz').on('submit','.question-form',function(event){
     event.preventDefault();
-    console.log(event);
-    console.log($('.question-form').val());
-    STORE.userAnswers.push($('.question-form').val());
+    STORE.userAnswers.push($('input[name=answer]:checked').val());
+    STORE.currentView = 'feedback';
     renderHtml();
   });
 
@@ -118,7 +117,9 @@ function handleAnswerSubmited(){
 function verifyAnswer(){
 // this function will check the submitted answer to see if it is correct
   const questionNumber = STORE.questionCounter;
-  const answer = STORE.userAnswers[-1];
+  const answer = STORE.userAnswers[STORE.userAnswers.length - 1];
+  console.log('Verfiying...');
+  console.log(answer);
   if (answer === QUESTIONS[questionNumber].correctAnswer){
     scoreKeeper();
     return true;
