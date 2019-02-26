@@ -59,13 +59,13 @@ function generateIntro(){
   return `
   <h1>Do you want to take this quiz?</h1>
   <button type="button" class="startButton">Start the Quiz</button>
-  `
+  `;
 }
 
 function generateQuiz(index){
   const question = QUESTIONS[index];
-return `
-<p class="question-text">
+  return `
+  <p class="question-text">
       ${question.question}
     </p>
     <form class="question-form">
@@ -74,18 +74,18 @@ return `
       <button class="question-2" type="radio">${question.answer3}</button>
       <button class="question-3" type="radio">${question.answer4}</button>
       <button class="question-4" type="submit">Submit</button>
-    </form>`
+    </form>`;
 }
 
 function renderHtml(){
-if (STORE.view === 'start'){
-  $('.intro').html(generateIntro());
-  $('.quiz').empty();
-} else if (STORE.view === 'quiz'){
-  $('.intro').empty();
-  $('.quiz').html(generateQuiz(STORE.questionCounter));
+  if (STORE.view === 'start'){
+    $('.intro').html(generateIntro());
+    $('.quiz').empty();
+  } else if (STORE.view === 'quiz'){
+    $('.intro').empty();
+    $('.quiz').html(generateQuiz(STORE.questionCounter));
+  }
 }
-// }
 function scoreKeeper(){
 // this function will add +1 to score if questions is correct
 }
@@ -117,12 +117,14 @@ function startQuiz(){
     STORE.questionCounter = 0;
     STORE.currentView = 'question';
     renderHtml();
-  })
+  });
 }
 
 function main(){
   handleNextQuestion();
-  handleSubmit();
+  // handleSubmit();
   renderHtml();
   startQuiz();
 }
+
+$(main);
