@@ -73,7 +73,7 @@ function generateQuiz(index){
       <input class="question-2" type="radio" value="${question.answer2}" name ="answer" required><span>${question.answer2}</span>
       <input class="question-3" type="radio" value="${question.answer3}" name ="answer" required><span>${question.answer3}</span>
       <input class="question-4" type="radio" value="${question.answer4}" name ="answer" required><span>${question.answer4}</span>
-      <button class="question-submit" type="submit">Submit</button>
+      <button class="question-submit" id="submit-button" type="submit">Submit</button>
     </form>`;
 }
 
@@ -100,7 +100,7 @@ function giveFeedback(){
 
 function handleAnswerSubmited(){
 // this function will listen submit
-  $('.quiz').on('submit','.question-submit',function(event){
+  $('.quiz').on('submit','#submit-button',function(event){
     event.preventDefault();
     console.log('Submit...');
   });
@@ -126,7 +126,7 @@ function startQuiz(){
 
 function main(){
   handleNextQuestion();
-  // handleSubmit();
+  handleAnswerSubmited();
   renderHtml();
   startQuiz();
 }
