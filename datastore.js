@@ -69,10 +69,10 @@ function generateQuiz(index){
       ${question.question}
     </p>
     <form class="question-form">
-      <button class="question-1" type="radio">${question.answer1}</button>
-      <button class="question-1" type="radio">${question.answer2}</button>
-      <button class="question-2" type="radio">${question.answer3}</button>
-      <button class="question-3" type="radio">${question.answer4}</button>
+      <input class="question-1" type="radio">${question.answer1}>
+      <input class="question-1" type="radio">${question.answer2}>
+      <input class="question-2" type="radio">${question.answer3}>
+      <input class="question-3" type="radio">${question.answer4}>
       <button class="question-4" type="submit">Submit</button>
     </form>`;
 }
@@ -115,7 +115,7 @@ function startQuiz(){
 // this function starts a new quiz
   $('.intro').on('click','.startButton',function(event){
     STORE.questionCounter = 0;
-    STORE.currentView = 'question';
+    STORE.currentView = 'quiz';
     renderHtml();
   });
 }
