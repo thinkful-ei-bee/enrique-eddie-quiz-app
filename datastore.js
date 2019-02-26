@@ -1,11 +1,23 @@
-const STORE = [{
-    currentQuestion:
-    answersCorrect:
-}]
-
-function renderHtml(){
-
+const STORE = {
+//  current question
+//  user's answer choices
+//  current view 
+//  Score
 }
+// // const QUESTIONS = [];
+// function generateAnswerList(){
+
+// }
+
+// function renderQuestionText(){
+
+// }
+
+// function renderHtml(){
+// if (STORE.view === 'start'){
+
+// } else if (STORE.view === 'quiz'){}
+// // }
 function scoreKeeper(){
 // this function will add +1 to score if questions is correct
 }
@@ -17,7 +29,7 @@ function giveFeedback(){
     //this function will let viewer know if they got the question right
 }
 
-function handleSubmit(){
+function handleAnswerSubmited(){
 // this function will listen submit
 }
 
