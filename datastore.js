@@ -9,7 +9,7 @@ const STORE = {
 
 const QUESTIONS = [
   {
-    question: 'What does FPS stand for?',
+    question: 'What does FPS stand for?',// turn answers into an array and then use for loop to render ... the correct answer will be array index
     answer1: 'flag per shot',
     answer2: 'funky penguin singing',
     answer3: 'first person shooter',
@@ -68,14 +68,14 @@ function generateQuiz(index){
   <p class="question-text">
       ${question.question}
     </p>
-    <form class="question-form">
+    <form class="question-form"> 
       <input class="question-1" type="radio" value="${question.answer1}" name ="answer" required><span>${question.answer1}</span>
       <input class="question-2" type="radio" value="${question.answer2}" name ="answer" required><span>${question.answer2}</span>
       <input class="question-3" type="radio" value="${question.answer3}" name ="answer" required><span>${question.answer3}</span>
       <input class="question-4" type="radio" value="${question.answer4}" name ="answer" required><span>${question.answer4}</span>
       <button class="question-submit" id="submit-button" type="submit">Submit</button>
     </form>`;
-}
+}// for loop will go on line 72 and the value will be the index .... 
 
 function renderHtml(){
   if (STORE.currentView === 'start'){
