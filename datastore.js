@@ -69,19 +69,11 @@ function generateQuiz(index){
       ${question.question}
     </p>
     <form class="question-form">
-<<<<<<< HEAD
-      <input class="question-1" type="radio">${question.answer1}>
-      <input class="question-1" type="radio">${question.answer2}>
-      <input class="question-2" type="radio">${question.answer3}>
-      <input class="question-3" type="radio">${question.answer4}>
-      <button class="question-4" type="submit">Submit</button>
-=======
       <input class="question-1" type="radio" value="${question.answer1}" name ="answer" required><span>${question.answer1}</span>
       <input class="question-2" type="radio" value="${question.answer2}" name ="answer" required><span>${question.answer2}</span>
       <input class="question-3" type="radio" value="${question.answer3}" name ="answer" required><span>${question.answer3}</span>
       <input class="question-4" type="radio" value="${question.answer4}" name ="answer" required><span>${question.answer4}</span>
       <button class="question-submit" type="submit">Submit</button>
->>>>>>> ab388a6e466bd05ccc10ecf82387b82cbd3afff1
     </form>`;
 }
 
