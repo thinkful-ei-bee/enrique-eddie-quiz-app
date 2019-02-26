@@ -78,10 +78,10 @@ function generateQuiz(index){
 }
 
 function renderHtml(){
-  if (STORE.view === 'start'){
+  if (STORE.currentView === 'start'){
     $('.intro').html(generateIntro());
     $('.quiz').empty();
-  } else if (STORE.view === 'quiz'){
+  } else if (STORE.currentView === 'quiz'){
     $('.intro').empty();
     $('.quiz').html(generateQuiz(STORE.questionCounter));
   }
@@ -113,9 +113,9 @@ function handleNextQuestion(){
 
 function startQuiz(){
 // this function starts a new quiz
-  $('.intro').on('click','.startButton',function(event){
+  $('.intro').on('click','.startButton',function(){
     STORE.questionCounter = 0;
-    STORE.currentView = 'question';
+    STORE.currentView = 'quiz';
     renderHtml();
   });
 }
