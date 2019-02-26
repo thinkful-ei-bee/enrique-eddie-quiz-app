@@ -84,6 +84,10 @@ function renderHtml(){
   } else if (STORE.currentView === 'quiz'){
     $('.intro').empty();
     $('.quiz').html(generateQuiz(STORE.questionCounter));
+  } else if (STORE.currentView === 'feedback'){
+    $('.intro').empty();
+    $('.quiz').empty();
+    $('.feedback').html(generateFeedback());
   }
 }
 function scoreKeeper(){
@@ -94,21 +98,29 @@ function questionCounter(){
   STORE.questionCounter++;
 }
 
-function giveFeedback(){
-  //this function will let viewer know if they got the question right
-}
 
+function generateFeedback(){
+  return `<p>${correct ? "You got it right!" : "You got it wrong!"}</p><button class="next-question-button>Next Question</button>`;
+}
 function handleAnswerSubmited(){
 // this function will listen submit
-  $('.quiz').on('submit','#submit-button',function(event){
+  $('.quiz').on('submit','.question-form',function(event){
     event.preventDefault();
     console.log('Submit...');
+    const userAnswer = $('.question-form').val();
+    const correct = verifyAnswer(userAnswer);
+    renderHtml();
   });
 
 }
 
-function verifyAnswer(){
+function verifyAnswer(answer){
 // this function will check the submitted answer to see if it is correct
+const questionNumber = STORE.questionCounter;
+if (answer === QUESTIONS[questionNumber].correctAnswer){
+  scoreKeeper();
+  return true;
+}
 }
 
 function handleNextQuestion(){
