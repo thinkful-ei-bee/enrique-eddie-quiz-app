@@ -3,12 +3,12 @@
 }
 
 body {
-    background:  
+    background:  url('https://i.imgur.com/WtGQqVW.png'), fixed;
 }
 
 header {
     width: 100%;
-    background: url('https://i.imgur.com/WtGQqVW.png'), fixed;
+    background-color: black;
 }
 
 .status {
@@ -19,7 +19,7 @@ header {
 li {
     padding-left: 25px;
     font-size: 20px;
-    color: blue;
+    color: white;
     list-style-type: none;
 }
 
