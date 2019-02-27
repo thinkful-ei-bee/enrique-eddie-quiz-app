@@ -55,7 +55,21 @@ const QUESTIONS = [
 
 // }
 
+/********************* Generate Functions *********************/
+// These functions generate html elements for the views
+
+function generateStatus(){
+  // this function generates the status of the game including the user's total score and what question they are on
+  return `
+  <ul>
+    <li class="score">Total Score: ${STORE.score}</li>
+    <li class="question-count">Question ${STORE.questionCounter === null ? 0 : STORE.questionCounter + 1} of ${QUESTIONS.length}</li>
+  </ul>
+  `;
+}
+
 function generateIntro(){
+  // this function generates our landing view asking if you want to start the quiz
   return `
   <h1>Do you want to take this quiz?</h1>
   <button type="button" class="startButton">Start the Quiz</button>
@@ -63,6 +77,7 @@ function generateIntro(){
 }
 
 function generateQuiz(index){
+  // this function generates the actual quiz including the question, answers, and the submit button
   const question = QUESTIONS[index];
   return `
   <p class="question-text">
@@ -76,45 +91,79 @@ function generateQuiz(index){
       <button class="question-submit" id="submit-button" type="submit">Submit</button>
     </form>`;
 }// for loop will go on line 72 and the value will be the index .... 
+// possibly put this logic in another function, possibly generateQuestion
+
+function generateFeedback(){
+  /// this function generates the html elements for the feedback view
+  const correct = verifyAnswer();
+  return `<p>${correct ? 'You got it right!' : 'You got it wrong!'}</p><button id="next-question-button">Next Question</button>`;
+}
+
+function generateEnd(){
+  //this function will show the end of the quiz and allow user to restart
+  console.log('End Page...');
+}
+
+/********************* Render Function *********************/
+// This functions render the html elements from our generate functions to the DOM
 
 function renderHtml(){
+  // this function renders the html elements inside of our main element which includes the intro, the quiz, 
+  // feedback, and the end. 
+  // this function also renders the status of the game including a user's score and current question number
   if (STORE.currentView === 'start'){
     $('.intro').html(generateIntro());
     $('.quiz').empty();
     $('.feedback').empty();
+    $('.end').empty();
   } else if (STORE.currentView === 'quiz'){
     $('.intro').empty();
     $('.quiz').html(generateQuiz(STORE.questionCounter));
     $('.feedback').empty();
+    $('.end').empty();
   } else if (STORE.currentView === 'feedback'){
     $('.intro').empty();
     $('.quiz').empty();
     $('.feedback').html(generateFeedback());
+    $('.end').empty();
   } else if (STORE.currentView === 'end'){
     $('.intro').empty();
     $('.quiz').empty();
     $('.feedback').empty();
     $('.end').html(generateEnd());
   }
+  $('.status').html(generateStatus());
 }
+
+/********************* Other Helpful Function *********************/
+// These functions help compute other tasks used by the other functions
+
 function scoreKeeper(){
-// this function will add +1 to score if questions is correct
+// this function will add +1 to score
+  STORE.score++;
 }
+
 function questionCounter(){
-// this function keeps track of the current question viewer is on
+// this function will add +1 to questionCounter
   STORE.questionCounter++;
 }
 
-generateEnd(){
-  //this function will show the end of the quiz and allow user to restart
+function verifyAnswer(){
+  // this function will check the submitted answer to see if it is correct
+  const questionNumber = STORE.questionCounter;
+  const answer = STORE.userAnswers[STORE.userAnswers.length - 1];
+  if (answer === QUESTIONS[questionNumber].correctAnswer){
+    scoreKeeper();
+    return true;
+  }
+  return false;
 }
 
-function generateFeedback(){
-  const correct = verifyAnswer();
-  return `<p>${correct ? 'You got it right!' : 'You got it wrong!'}</p><button id="next-question-button">Next Question</button>`;
-}
+/********************* Handle Functions *********************/
+// These functions will handle 
+
 function handleAnswerSubmited(){
-// this function will listen submit
+// this function will listen to when a user submits an answer
   $('.quiz').on('submit','.question-form',function(event){
     event.preventDefault();
     STORE.userAnswers.push($('input[name=answer]:checked').val());
@@ -124,27 +173,15 @@ function handleAnswerSubmited(){
 
 }
 
-function verifyAnswer(){
-// this function will check the submitted answer to see if it is correct
-  const questionNumber = STORE.questionCounter;
-  const answer = STORE.userAnswers[STORE.userAnswers.length - 1];
-  console.log('Verfiying...');
-  console.log(answer);
-  if (answer === QUESTIONS[questionNumber].correctAnswer){
-    scoreKeeper();
-    return true;
-  }
-  return false;
-}
-
 function handleNextQuestion(){
 // this function will exit the feedback screen and go to next question
-$('.feedback').on('click', '#next-question-button', function(event){
-  console.log('handling ....');
-  STORE.currentView = "quiz";
-  questionCounter();
-  renderHtml();
-})
+  $('.feedback').on('click', '#next-question-button', function(event){
+    console.log('handling ....');
+    // add logic to check if on last question; if on the last question set currentView to end
+    STORE.currentView = 'quiz';
+    questionCounter();
+    renderHtml();
+  });
 }
 
 function startQuiz(){
@@ -155,6 +192,9 @@ function startQuiz(){
     renderHtml();
   });
 }
+
+/********************* Main Function *********************/
+// This function brings together all the functions and runs them on page load
 
 function main(){
   handleNextQuestion();
