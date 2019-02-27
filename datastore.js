@@ -102,6 +102,7 @@ function generateFeedback(){
 function generateEnd(){
   //this function will show the end of the quiz and allow user to restart
   console.log('End Page...');
+  return `<p> CONGRATULATIONS! YOUR FINAL SCORE IS ${STORE.score} out of ${QUESTIONS.length}!</p><button type="button" class="startButton">Restart the Quiz</button>`
 }
 
 /********************* Render Function *********************/
@@ -178,8 +179,12 @@ function handleNextQuestion(){
   $('.feedback').on('click', '#next-question-button', function(event){
     console.log('handling ....');
     // add logic to check if on last question; if on the last question set currentView to end
+    if (STORE.questionCounter === QUESTIONS.length -1){
+      STORE.currentView = 'end';
+    } else {
     STORE.currentView = 'quiz';
     questionCounter();
+    }
     renderHtml();
   });
 }
@@ -192,6 +197,19 @@ function startQuiz(){
     renderHtml();
   });
 }
+function restartQuiz(){
+  // this function starts a new quiz
+    $('.end').on('click','.startButton',function(){
+      console.log('restarting');
+      STORE.questionCounter = 0;
+      STORE.currentView = 'quiz';
+      STORE.userAnswers = [];
+      STORE.score = 0;
+      renderHtml();
+      // if we want to get fancy, we can dump userAnswers array into a userHistory array before setting it 0;
+    });
+  }
+
 
 /********************* Main Function *********************/
 // This function brings together all the functions and runs them on page load
@@ -201,6 +219,7 @@ function main(){
   handleAnswerSubmited();
   renderHtml();
   startQuiz();
+  restartQuiz()
 }
 
 $(main);
