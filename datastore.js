@@ -72,7 +72,7 @@ function generateIntro(){
   // this function generates our landing view asking if you want to start the quiz
   return `
   <h1>Do you want to take this quiz?</h1>
-  <button type="button" class="startButton">Start Quiz</button>
+  <button type="button" class="startButton">Start</button>
   `;
 }
 
@@ -104,13 +104,13 @@ function generateQuiz(index){
 function generateFeedback(){
   /// this function generates the html elements for the feedback view
   const correct = verifyAnswer();
-  return `<p>${correct ? 'You got it right!' : 'You got it wrong!'}</p><button id="next-question-button">Next Question</button>`;
+  return `<p>${correct ? 'You got it right!' : 'You got it wrong!'}</p><button id="next-question-button">Next</button>`;
 }
 
 function generateEnd(){
   //this function will show the end of the quiz and allow user to restart
   console.log('End Page...');
-  return `<p> CONGRATULATIONS! YOUR FINAL SCORE IS ${STORE.score} out of ${QUESTIONS.length}!</p><button type="button" class="startButton">Restart the Quiz</button>`
+  return `<p> CONGRATULATIONS! YOUR FINAL SCORE IS ${STORE.score} out of ${QUESTIONS.length}!</p><button type="button" class="startButton">Restart</button>`
 }
 
 /********************* Render Function *********************/
