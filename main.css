@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background:  
+}
+
+header {
+    width: 100%;
+    background-color: pink;
+}
+
+.status {
+    /* banner for score keeper and question counter */
+   
+}
+
+li {
+    padding-left: 25px;
+    font-size: 20px;
+    color: blue;
+    list-style-type: none;
+}
+
+.quiz {
+
+}
+.intro {
+    background-color:gray;
+}
+
+
+.start {
+
+}
+
+.feedback {
+
+}
+
+.end {
+
+}
+
+.startButton{
+
+}
+
+#nextQuestion {
+
+
+}
+
+h1 {
+
+}
+
+input {
+
+
+}
