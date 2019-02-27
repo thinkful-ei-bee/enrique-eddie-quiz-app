@@ -72,7 +72,7 @@ function generateIntro(){
   // this function generates our landing view asking if you want to start the quiz
   return `
   <h1>Do you want to take this quiz?</h1>
-  <button type="button" class="startButton">Start the Quiz</button>
+  <button type="button" class="startButton">Start Quiz</button>
   `;
 }
 
@@ -84,10 +84,18 @@ function generateQuiz(index){
       ${question.question}
     </p>
     <form class="question-form"> 
-      <input class="question-1" type="radio" value="${question.answer1}" name ="answer" required><span>${question.answer1}</span>
-      <input class="question-2" type="radio" value="${question.answer2}" name ="answer" required><span>${question.answer2}</span>
-      <input class="question-3" type="radio" value="${question.answer3}" name ="answer" required><span>${question.answer3}</span>
-      <input class="question-4" type="radio" value="${question.answer4}" name ="answer" required><span>${question.answer4}</span>
+      <span>
+        <input class="question-1" type="radio" value="${question.answer1}" name ="answer" required>${question.answer1}
+      </span>
+      <span>
+        <input class="question-2" type="radio" value="${question.answer2}" name ="answer" required>${question.answer2}
+      </span>
+      <span>
+        <input class="question-3" type="radio" value="${question.answer3}" name ="answer" required>${question.answer3}
+      </span>
+      <span>
+        <input class="question-4" type="radio" value="${question.answer4}" name ="answer" required>${question.answer4}
+      </span>
       <button class="question-submit" id="submit-button" type="submit">Submit</button>
     </form>`;
 }// for loop will go on line 72 and the value will be the index .... 

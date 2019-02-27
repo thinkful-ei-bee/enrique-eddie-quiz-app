@@ -3,12 +3,35 @@
 }
 
 body {
-    background:  url('https://i.imgur.com/WtGQqVW.png'), fixed;
+    background-color: lavender;
+}
+
+main{
+  
+}
+
+.controller{
+  position: relative;
+  background:  url('https://i.imgur.com/WtGQqVW.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-left: auto;
+  margin-right: auto;
+  height: 300px;
+  width: 600px;
 }
 
 header {
     width: 100%;
     background-color: black;
+}
+
+span{
+  display: block;
+}
+
+.question-form{
+  
 }
 
 .status {
@@ -23,11 +46,35 @@ li {
     list-style-type: none;
 }
 
+div.container{
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: gray;
+  width: 40%;
+  height: 50%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+h1, p, .question-text{
+  text-align: center;
+}
+
 .quiz {
 
 }
+
 .intro {
     background-color:gray;
+}
+
+button{
+  margin: 5px;
+  border-radius: 8px;
+  position: absolute;
+  top: 127%;
+  right: 32%;
 }
 
 
@@ -57,6 +104,5 @@ h1 {
 }
 
 input {
-
-
+  margin-left: 5px;
 }
