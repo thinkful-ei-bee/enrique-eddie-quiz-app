@@ -47,7 +47,8 @@ function generateStatus(){
   function generateFeedback(){
     /// this function generates the html elements for the feedback view
     const correct = verifyAnswer();
-    return `<p>${correct ? 'You got it right!' : 'You got it wrong!'}</p><button id="next-question-button">Next</button>`;
+    const wrong = `You got it wrong! The correct answer was ${QUESTIONS[STORE.questionCounter].correctAnswer}!`
+    return `<p>${correct ? 'You got it right!': wrong}</p><button id="next-question-button">Next</button>`;
   }
   
   function generateEnd(){
