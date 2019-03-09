@@ -3,20 +3,22 @@
 }
 
 body {
-    background: './images/Ni.jpg'; 
+    background: url('images/Ni.jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
   
     
 }
 
 .controller{
   position: relative;
-  background:  url('https://i.imgur.com/WtGQqVW.png');
+  background:  url(images/NES-Controller_Nintendo_Clipart_by_DG-RA.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   margin-left: auto;
   margin-right: auto;
   height: 300px;
-  width: 600px;
+  width: 700px;
   
 }
 main {
@@ -66,8 +68,12 @@ button{
   margin: 5px;
   border-radius: 8px;
   position: absolute;
-  top: 105%;
-  right: 34%;
+  top: 111%;
+  right: 35%;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 3px;
+  padding-bottom: 3px;
   background-color: rgb(29, 28, 28);
   color: white;
   min-width: 50px;
